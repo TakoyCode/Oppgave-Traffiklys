@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="lightBox" class="divcontainer">
+        <div id="lightcontainer">
+            <div id="redlight" class="circle"></div>
+            <div id="yellowlight" class="circle"></div>
+            <div id="greenlight" class="circle"></div>
+        </div>
+
+        <div class="buttoncontainer">
+            <button onclick="ManualLightSwitch('red','','')">Rød</button>
+            <button onclick="ManualLightSwitch('red','yellow','')">Rødt og gult</button>
+            <button onclick="ManualLightSwitch('','yellow','')">Gult</button>
+            <button onclick="ManualLightSwitch('','','green')">Grønt</button>
+        </div>
+
+        <div class="buttoncontainer">
+            <button onclick="turnOnAutomaticLightBox()">Skru på Traffikklyset</button>
+            <button onclick="turnOffAutomaticLightBox()">Skru Av Traffiklyset</button>
+        </div>
+    </div>
+
+    <script>
+
+        let timer;
+        turnOnAutomaticLightBox();
+
+        function turnOnAutomaticLightBox() {
+            timer = setTimeout(setLightRed, 1000);
+        }
+
+        function turnOffAutomaticLightBox() {
+            clearTimeout(timer);
+            changeLightColor('', '', '')
+        }
+
+        function setLightRed() {
+            changeLightColor('red', '', '');
+            timer = setTimeout(setLightRedAndYellow, 1000);
+        }
+
+        function setLightRedAndYellow() {
+            changeLightColor('red', 'yellow', '');
+            timer = setTimeout(setLightGreen, 1000);
+        }
+
+        function setLightYellow() {
+            changeLightColor('', 'yellow', '');
+            timer = setTimeout(setLightRed, 1000);
+        }
+
+        function setLightGreen() {
+            changeLightColor('', '', 'green');
+            timer = setTimeout(setLightYellow, 1000);
+        }
+
+        function ManualLightSwitch(color1, color2, color3) {
+            turnOffAutomaticLightBox();
+            changeLightColor(color1, color2, color3)
+        }
+
+        function changeLightColor(color1, color2, color3) {
+            document.getElementById('lightcontainer').innerHTML = /*html*/ `
+            <div id="redlight" class="circle" style="background-color: ${color1};"></div>
+            <div id="yellowlight" class="circle" style="background-color: ${color2};"></div>
+            <div id="greenlight" class="circle" style="background-color: ${color3};"></div>
+            `
+        }
+
+    </script>
+
+</body>
+
+</html>

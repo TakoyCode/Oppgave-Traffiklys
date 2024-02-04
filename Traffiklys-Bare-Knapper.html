@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: gray;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 20px;
+        }
+
+        #lightcontainer {
+            background-color: lightgray;
+            width: 250px;
+            padding: 5px;
+        }
+
+        .buttoncontainer {
+            display: flex;
+            justify-content: center;
+        }
+
+        .divcontainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="lightBox" class="divcontainer">
+        <div id="lightcontainer">
+            <div id="redlight" class="circle"></div>
+            <div id="yellowlight" class="circle"></div>
+            <div id="greenlight" class="circle"></div>
+        </div>
+        <div class="buttoncontainer">
+            <button onclick="changeToRed()">Red</button>
+            <button onclick="changeToRedYellow()">Yellow</button>
+            <button onclick="changeToGreen()">Green</button>
+        </div>
+    </div>
+
+    <script>
+        function changeToRed() {
+            removeStyleFromCircles();
+            document.getElementById('redlight').style.backgroundColor = "red";
+        }
+
+        function changeToRedYellow() {
+            removeStyleFromCircles();
+            document.getElementById('redlight').style.backgroundColor = "red";
+            document.getElementById('yellowlight').style.backgroundColor = "yellow";
+        }
+
+        function changeToGreen() {
+            removeStyleFromCircles();
+            document.getElementById('greenlight').style.backgroundColor = "green";
+        }
+
+        function removeStyleFromCircles() {
+            document.getElementById('redlight').style.backgroundColor = [];
+            document.getElementById('yellowlight').style.backgroundColor = [];
+            document.getElementById('greenlight').style.backgroundColor = [];
+        }
+    </script>
+</body>
+
+</html>
